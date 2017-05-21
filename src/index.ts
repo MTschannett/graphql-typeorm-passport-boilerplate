@@ -9,7 +9,7 @@ const env = (isDev && 'development') || (isTest && 'test') || 'production'
 
 async function bootstrap() {
   const app = await startServer({ isDev, isTest });
-  const port: number = process.env.PORT;
+  const port: number = process.env.PORT || 4000;
 
   console.log('starting server...');
 
