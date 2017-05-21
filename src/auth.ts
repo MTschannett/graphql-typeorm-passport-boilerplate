@@ -98,12 +98,6 @@ export default async function setupPassport(server: Express, connection: Connect
         return await bcrypt.hash(password, saltRounds);
     }
 
-    function loginSuccess(req: Request, response: Response, next: Function) {
-        // response.setHeader('Content-Type', 'Application/JSON')
-        // response.send(JSON.stringify(req.user))
-
-    }
-
     function loginForm(req: Request, response: Response) {
         if (req.user && req.user.id) {
             response.redirect('/graphiql')
@@ -111,7 +105,7 @@ export default async function setupPassport(server: Express, connection: Connect
             response.send(`
 				<html>
 				<body>
-					<div style="width: 100%">TEST</div>
+					<div style="width: 100%">Login or Register</div>
 					<form style="float: left" action="/login" method="post">
 						<h3>Login</h3>
 						<div>
@@ -160,17 +154,4 @@ export function ensureAuthenticated(req: Request, res: Response, next: Function)
 
     res.sendStatus(403);
 
-}
-
-function logInUser(req: Request, res: Response, next: Function) {
-	if (req.user) {
-		req.login(req.user, function(err) {
-			if (err) {
-				return next(err);
-			}
-		})
-	}
-	console.log('after login')
-
-	next();
 }
