@@ -1,4 +1,4 @@
 export const RedisConfig: {host: string, port: number} = {
-    host: '127.0.0.1',
-    port: 6379
+    host: process.env.redisHost,
+    port: process.env.redisPort
 }

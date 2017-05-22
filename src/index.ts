@@ -1,7 +1,7 @@
 import startServer from './app'
 import { join } from 'path'
 import * as chalk from 'chalk'
-require('dotenv').config({ path: join(__dirname, '../.enviornment') })
+require('dotenv').config({ path: join(__dirname, '../.env') })
 
 const isDev = process.env.NODE_ENV === 'dev'
 const isTest = process.env.NODE_ENV === 'test'

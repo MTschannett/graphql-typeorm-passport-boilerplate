@@ -27,7 +27,7 @@ export default async function getServer (connection: Connection, isDev = false) 
 	}
 
 	server.use(session({
-		secret: 'asdfasdfs',
+		secret: process.env.secret,
 		genid: function (req) {
 			return uuid.v4();
 		},
