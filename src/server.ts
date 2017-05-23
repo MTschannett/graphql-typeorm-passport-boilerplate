@@ -10,12 +10,9 @@ import {Connection} from 'typeorm'
 import {red} from 'chalk'
 import * as cors from 'cors'
 
-// TODO remove flash. A rest api doesn't need that.
-
 const RedisStore = connectRedis(session)
 
 export default async function getServer (connection: Connection, isDev = false) {
-
 	let server = express()
 
 	if (isDev) {
@@ -34,7 +31,10 @@ export default async function getServer (connection: Connection, isDev = false) 
 		genid: function (req) {
 			return uuid.v4();
 		},
-		store: new RedisStore({})
+		store: new RedisStore({
+			host: '127.0.0.1',
+			port: 6379
+		})
 	}))
 
 	server.use(bodyParser.urlencoded({
